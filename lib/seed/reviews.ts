@@ -1,0 +1,71 @@
+import type { Review } from "../types";
+
+const ISO = "2026-01-01T00:00:00.000Z";
+
+export const SEED_REVIEWS: Review[] = [
+  {
+    id: "r1",
+    reviewerId: "u-emma",
+    reviewerName: "Emma R.",
+    chefId: "maya",
+    mealId: "chicken-bowl",
+    type: "meal",
+    rating: 5,
+    text:
+      "Best meal prep I've ever ordered. Macros are dialed and the chicken stays juicy four days in the fridge.",
+    tags: ["High-Protein", "Worth it"],
+    imageUrls: [],
+    createdAt: ISO,
+  },
+  {
+    id: "r2",
+    reviewerId: "u-jordan",
+    reviewerName: "Jordan T.",
+    chefId: "maya",
+    type: "chef",
+    rating: 5,
+    text: "Chef Maya runs a tight operation. Always on time, always sealed, always labeled.",
+    tags: ["On time", "Professional"],
+    imageUrls: [],
+    createdAt: ISO,
+  },
+  {
+    id: "r3",
+    reviewerId: "u-sam",
+    reviewerName: "Sam K.",
+    chefId: "lina",
+    mealId: "vegan-curry",
+    type: "meal",
+    rating: 5,
+    text: "Best vegan curry in LA. Period.",
+    tags: ["Vegan", "Flavor"],
+    imageUrls: [],
+    createdAt: ISO,
+  },
+  {
+    id: "r4",
+    reviewerId: "u-mia",
+    reviewerName: "Mia B.",
+    chefId: "lina",
+    type: "chef",
+    rating: 5,
+    text:
+      "Lina is so thoughtful. Asked about my allergies before the first order and customized everything.",
+    tags: ["Communicative", "Allergy-aware"],
+    imageUrls: [],
+    createdAt: ISO,
+  },
+  {
+    id: "r5",
+    reviewerId: "u-ricky",
+    reviewerName: "Ricky H.",
+    chefId: "andre",
+    mealId: "family-taco",
+    type: "meal",
+    rating: 5,
+    text: "Family taco kit fed 4 hungry adults. Better than any restaurant near us.",
+    tags: ["Family", "Worth it"],
+    imageUrls: [],
+    createdAt: ISO,
+  },
+];

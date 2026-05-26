@@ -1,0 +1,28 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mealed mascot">
+  <defs>
+    <clipPath id="eye-l"><ellipse cx="106" cy="102" rx="16" ry="22"></ellipse></clipPath>
+    <clipPath id="eye-r"><ellipse cx="144" cy="102" rx="16" ry="22"></ellipse></clipPath>
+  </defs>
+
+  
+  <path d="M 28 118 Q 120 260 212 118" fill="none" stroke="#0A053D" stroke-width="10" stroke-linecap="round"></path>
+
+  
+  <g fill="#0A053D">
+    <ellipse cx="46" cy="116" rx="20" ry="9"></ellipse>
+    <rect x="28" y="58" width="9" height="58" rx="4.5"></rect>
+    <rect x="41.5" y="58" width="9" height="58" rx="4.5"></rect>
+    <rect x="55" y="58" width="9" height="58" rx="4.5"></rect>
+  </g>
+
+  
+  <ellipse cx="196" cy="92" rx="20" ry="26" fill="#0A053D"></ellipse>
+
+  
+  <ellipse cx="106" cy="102" rx="16" ry="22" fill="#0A053D"></ellipse>
+  <path d="M 70 60 L 142 60 L 142 90 Q 106 113 70 90 Z" fill="#FFFFFF" clip-path="url(#eye-l)"></path>
+
+  
+  <ellipse cx="144" cy="102" rx="16" ry="22" fill="#0A053D"></ellipse>
+  <path d="M 108 60 L 180 60 L 180 90 Q 144 113 108 90 Z" fill="#FFFFFF" clip-path="url(#eye-r)"></path>
+</svg>

@@ -1,0 +1,21 @@
+// Food-image gradient palettes — used as MealCard fallback "photo"
+export const PALETTES: Record<string, [string, string]> = {
+  chicken: ["#D4A574", "#8B5A2B"],
+  salmon: ["#F4A582", "#C66B4A"],
+  veggie: ["#9CB071", "#5E7A3A"],
+  bowl: ["#E8C988", "#A68037"],
+  pasta: ["#E2B68A", "#8B5E34"],
+  beef: ["#A66C5C", "#5C3522"],
+  quinoa: ["#D7C7A6", "#9C8255"],
+  tofu: ["#E5D9B6", "#8FA56E"],
+  teriyaki: ["#C68A4C", "#6E3F1A"],
+  cold: ["#A8C5B5", "#5E8775"],
+  family: ["#D89A60", "#7A4421"],
+  chili: ["#B85440", "#5E1F1A"],
+  breakfast: ["#F0D27A", "#B07B2A"],
+  pancake: ["#E8C176", "#9C6921"],
+  burrito: ["#C09866", "#6E4A24"],
+  korean: ["#A56247", "#4B2517"],
+  shrimp: ["#E89A78", "#A45433"],
+  greek: ["#D9B97E", "#7A6034"],
+};
