@@ -1,4 +1,4 @@
-# Mealed — Frontend-Only Slice Design
+# Mealed Frontend-Only Slice Design
 
 **Date:** 2026-05-23
 **Scope:** Full interactive frontend for Mealed (marketing + consumer + chef + admin) with no real backend. All data flows through Next.js API routes that return typed seed data; the frontend makes real `fetch()` calls so the backend swap is a route-handler change, not a frontend change.
@@ -23,92 +23,92 @@
 ```
 mealed website/
 ├── app/
-│   ├── (marketing)/          → marketing layout (top nav, footer)
-│   │   ├── page.tsx              → /
-│   │   ├── about/page.tsx
-│   │   ├── safety/page.tsx
-│   │   ├── become-a-chef/page.tsx
-│   │   ├── how-it-works/page.tsx
-│   │   ├── careers/page.tsx
-│   │   ├── press/page.tsx
-│   │   ├── help/page.tsx
-│   │   ├── login/page.tsx
-│   │   └── signup/page.tsx
-│   ├── (consumer)/           → consumer app layout (app header + mobile bottom nav)
-│   │   ├── home/page.tsx
-│   │   ├── browse/page.tsx
-│   │   ├── search/page.tsx
-│   │   ├── chefs/[chefId]/page.tsx
-│   │   ├── meals/[mealId]/page.tsx
-│   │   ├── categories/[category]/page.tsx
-│   │   ├── cart/page.tsx
-│   │   ├── checkout/page.tsx
-│   │   ├── orders/page.tsx
-│   │   ├── orders/[orderId]/page.tsx
-│   │   ├── orders/[orderId]/confirmation/page.tsx
-│   │   ├── favorites/page.tsx
-│   │   ├── profile/page.tsx
-│   │   ├── custom-request/[chefId]/page.tsx
-│   │   ├── messages/page.tsx
-│   │   └── messages/[threadId]/page.tsx
-│   ├── chef/                 → chef panel (gated to role=chef)
-│   │   ├── onboarding/page.tsx
-│   │   ├── dashboard/page.tsx
-│   │   ├── meals/page.tsx
-│   │   ├── meals/new/page.tsx
-│   │   ├── menu/page.tsx
-│   │   ├── orders/page.tsx
-│   │   ├── custom-requests/page.tsx
-│   │   ├── messages/page.tsx
-│   │   ├── reviews/page.tsx
-│   │   ├── earnings/page.tsx
-│   │   ├── payouts/page.tsx
-│   │   ├── verification/page.tsx
-│   │   └── settings/page.tsx
-│   ├── admin/                → admin panel (gated to role=admin)
-│   │   ├── dashboard/page.tsx
-│   │   ├── chefs/page.tsx
-│   │   ├── verification/page.tsx
-│   │   ├── orders/page.tsx
-│   │   ├── users/page.tsx
-│   │   ├── reports/page.tsx
-│   │   └── revenue/page.tsx
-│   ├── api/                  → mock backend (route handlers reading seed)
-│   │   ├── chefs/route.ts
-│   │   ├── chefs/[chefId]/route.ts
-│   │   ├── meals/route.ts
-│   │   ├── meals/[mealId]/route.ts
-│   │   ├── orders/route.ts
-│   │   ├── orders/[orderId]/route.ts
-│   │   ├── custom-requests/route.ts
-│   │   ├── reviews/route.ts
-│   │   ├── search/route.ts
-│   │   ├── messages/route.ts
-│   │   └── admin/...
-│   ├── layout.tsx            → root, fonts, role-switcher portal, toaster
-│   └── globals.css           → tokens + Tailwind
+│  ├── (marketing)/     → marketing layout (top nav, footer)
+│  │  ├── page.tsx       → /
+│  │  ├── about/page.tsx
+│  │  ├── safety/page.tsx
+│  │  ├── become-a-chef/page.tsx
+│  │  ├── how-it-works/page.tsx
+│  │  ├── careers/page.tsx
+│  │  ├── press/page.tsx
+│  │  ├── help/page.tsx
+│  │  ├── login/page.tsx
+│  │  └── signup/page.tsx
+│  ├── (consumer)/      → consumer app layout (app header + mobile bottom nav)
+│  │  ├── home/page.tsx
+│  │  ├── browse/page.tsx
+│  │  ├── search/page.tsx
+│  │  ├── chefs/[chefId]/page.tsx
+│  │  ├── meals/[mealId]/page.tsx
+│  │  ├── categories/[category]/page.tsx
+│  │  ├── cart/page.tsx
+│  │  ├── checkout/page.tsx
+│  │  ├── orders/page.tsx
+│  │  ├── orders/[orderId]/page.tsx
+│  │  ├── orders/[orderId]/confirmation/page.tsx
+│  │  ├── favorites/page.tsx
+│  │  ├── profile/page.tsx
+│  │  ├── custom-request/[chefId]/page.tsx
+│  │  ├── messages/page.tsx
+│  │  └── messages/[threadId]/page.tsx
+│  ├── chef/         → chef panel (gated to role=chef)
+│  │  ├── onboarding/page.tsx
+│  │  ├── dashboard/page.tsx
+│  │  ├── meals/page.tsx
+│  │  ├── meals/new/page.tsx
+│  │  ├── menu/page.tsx
+│  │  ├── orders/page.tsx
+│  │  ├── custom-requests/page.tsx
+│  │  ├── messages/page.tsx
+│  │  ├── reviews/page.tsx
+│  │  ├── earnings/page.tsx
+│  │  ├── payouts/page.tsx
+│  │  ├── verification/page.tsx
+│  │  └── settings/page.tsx
+│  ├── admin/        → admin panel (gated to role=admin)
+│  │  ├── dashboard/page.tsx
+│  │  ├── chefs/page.tsx
+│  │  ├── verification/page.tsx
+│  │  ├── orders/page.tsx
+│  │  ├── users/page.tsx
+│  │  ├── reports/page.tsx
+│  │  └── revenue/page.tsx
+│  ├── api/         → mock backend (route handlers reading seed)
+│  │  ├── chefs/route.ts
+│  │  ├── chefs/[chefId]/route.ts
+│  │  ├── meals/route.ts
+│  │  ├── meals/[mealId]/route.ts
+│  │  ├── orders/route.ts
+│  │  ├── orders/[orderId]/route.ts
+│  │  ├── custom-requests/route.ts
+│  │  ├── reviews/route.ts
+│  │  ├── search/route.ts
+│  │  ├── messages/route.ts
+│  │  └── admin/...
+│  ├── layout.tsx      → root, fonts, role-switcher portal, toaster
+│  └── globals.css      → tokens + Tailwind
 ├── components/
-│   ├── ui/                       → shadcn primitives (button, card, input, …)
-│   ├── brand/                    → Mascot, Wordmark, MealImage, ChefAvatar
-│   ├── layout/                   → MarketingHeader, AppHeader, Footer, MobileBottomNav, RoleSwitcher
-│   ├── marketplace/              → MealCard, ChefCard, CategoryChip, RowHeader, HScroll, SearchBar, FilterDrawer
-│   ├── orders/                   → OrderCard, OrderStatusBadge, FeeBreakdown, OrderConfirmationCard
-│   ├── chef/                     → DashboardStatCard, MenuRow, KitchenScanUpload
-│   ├── admin/                    → AdminTable, VerificationReviewCard
-│   ├── empty-states/             → EmptyState (one component, themed)
-│   └── states/                   → LoadingSkeleton, ErrorState
+│  ├── ui/            → shadcn primitives (button, card, input, …)
+│  ├── brand/          → Mascot, Wordmark, MealImage, ChefAvatar
+│  ├── layout/          → MarketingHeader, AppHeader, Footer, MobileBottomNav, RoleSwitcher
+│  ├── marketplace/       → MealCard, ChefCard, CategoryChip, RowHeader, HScroll, SearchBar, FilterDrawer
+│  ├── orders/          → OrderCard, OrderStatusBadge, FeeBreakdown, OrderConfirmationCard
+│  ├── chef/           → DashboardStatCard, MenuRow, KitchenScanUpload
+│  ├── admin/          → AdminTable, VerificationReviewCard
+│  ├── empty-states/       → EmptyState (one component, themed)
+│  └── states/          → LoadingSkeleton, ErrorState
 ├── lib/
-│   ├── api/                      → chefs.ts, meals.ts, orders.ts, …  (real fetch wrappers)
-│   ├── auth/                     → store.ts (zustand), guards.tsx, mock-users.ts
-│   ├── cart/                     → store.ts (zustand+persist)
-│   ├── favorites/                → store.ts
-│   ├── seed/                     → chefs.ts, meals.ts, palettes.ts, reviews.ts (ported from data.js)
-│   ├── fees.ts                   → FEE_CONFIG + computeFees(...) per README
-│   ├── types.ts                  → all DB-aligned TS types
-│   ├── utils.ts                  → cn(), formatPrice, generatePickupCode, …
-│   └── validation/               → Zod schemas per form
+│  ├── api/           → chefs.ts, meals.ts, orders.ts, … (real fetch wrappers)
+│  ├── auth/           → store.ts (zustand), guards.tsx, mock-users.ts
+│  ├── cart/           → store.ts (zustand+persist)
+│  ├── favorites/        → store.ts
+│  ├── seed/           → chefs.ts, meals.ts, palettes.ts, reviews.ts (ported from data.js)
+│  ├── fees.ts          → FEE_CONFIG + computeFees(...) per README
+│  ├── types.ts         → all DB-aligned TS types
+│  ├── utils.ts         → cn(), formatPrice, generatePickupCode, …
+│  └── validation/        → Zod schemas per form
 └── public/
-    └── mascot.png                → copied from provided UI assets
+  └── mascot.png        → copied from provided UI assets
 ```
 
 ### Component reuse from existing HTML mockup
@@ -118,11 +118,11 @@ Direct ports (visual fidelity matters here):
 
 ### State
 
-- **Auth** — zustand `useAuth` store. Shape: `{ user: { id, name, email, role } | null, signIn, signOut, setRole }`. Persisted.
-- **Cart** — zustand `useCart`. `addItem`, `removeItem`, `setQty`, `clear`. Persisted.
-- **Favorites** — zustand `useFavorites`. Sets for `meals` and `chefs`. Persisted.
-- **Orders** — placed orders stored in `useOrders` (persisted). `/orders` and `/orders/[id]` pull from both API seed (history) + local store (user-placed).
-- **Chef-own data** — `useChefDraft` for meals chefs create during the session (persisted, scoped by chefId).
+- **Auth** zustand `useAuth` store. Shape: `{ user: { id, name, email, role } | null, signIn, signOut, setRole }`. Persisted.
+- **Cart** zustand `useCart`. `addItem`, `removeItem`, `setQty`, `clear`. Persisted.
+- **Favorites** zustand `useFavorites`. Sets for `meals` and `chefs`. Persisted.
+- **Orders** placed orders stored in `useOrders` (persisted). `/orders` and `/orders/[id]` pull from both API seed (history) + local store (user-placed).
+- **Chef-own data** `useChefDraft` for meals chefs create during the session (persisted, scoped by chefId).
 
 ### Routing / role gating
 
@@ -136,7 +136,7 @@ Direct ports (visual fidelity matters here):
 
 ### Fee logic
 
-Implemented per README in `lib/fees.ts` — `computeOrderFees(subtotal, deliveryFee)` and `computeCustomQuoteFees(subtotal, deliveryFee)`. Returns the full FeeBreakdown shape.
+Implemented per README in `lib/fees.ts` `computeOrderFees(subtotal, deliveryFee)` and `computeCustomQuoteFees(subtotal, deliveryFee)`. Returns the full FeeBreakdown shape.
 
 ### Loading / empty / error states
 
