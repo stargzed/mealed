@@ -8,7 +8,8 @@ import { SEED_MEALS, SEED_REVIEWS, chefMap } from "@/lib/seed";
 import { ChefAvatar } from "@/components/brand/chef-avatar";
 import { Rating } from "@/components/ui/rating";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { useAppDownload } from "@/lib/app-download-store";
 import { MealCard } from "@/components/marketplace/meal-card";
 import { VerifiedTag } from "@/components/marketplace/verified-tag";
 import { EmptyState } from "@/components/states/empty-state";
@@ -21,6 +22,7 @@ export default function ChefProfilePage() {
   const chef = chefMap[params.chefId];
   const toggleChef = useFavorites((s) => s.toggleChef);
   const isFav = useFavorites((s) => s.chefs.includes(params.chefId ?? ""));
+  const showAppDownload = useAppDownload((s) => s.show);
 
   const meals = useMemo(
     () => SEED_MEALS.filter((m) => m.chefId === params.chefId),
@@ -84,19 +86,26 @@ export default function ChefProfilePage() {
 
         <div className="flex flex-col gap-2 w-full md:w-auto md:items-end">
           <div className="flex gap-2">
-            <Link
-              href={`/messages?chef=${chef.id}`}
-              className={buttonVariants({ variant: "secondary", size: "sm" })}
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() =>
+                showAppDownload(`Message ${chef.displayName} from the Mealed app.`)
+              }
             >
               <MessageCircle size={14} /> Message
-            </Link>
+            </Button>
             {chef.customRequestsEnabled && (
-              <Link
-                href={`/custom-request/${chef.id}`}
-                className={buttonVariants({ size: "sm" })}
+              <Button
+                size="sm"
+                onClick={() =>
+                  showAppDownload(
+                    `Send ${chef.displayName} a custom request from the Mealed app.`,
+                  )
+                }
               >
                 Custom request
-              </Link>
+              </Button>
             )}
             <button
               onClick={() => toggleChef(chef.id)}

@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { AnimatedNumber } from "@/components/ui/animated-number";
-import { BentoFeatures } from "@/components/marketing/bento-features";
+import { ChefCtaButtons } from "@/components/marketing/chef-cta-buttons";
+import { ChefFeatures } from "@/components/marketing/chef-features";
+import { EarningsCalculator } from "@/components/marketing/earnings-calculator";
 
 export const metadata = { title: "Become a chef" };
 
@@ -22,53 +20,60 @@ export default function BecomeAChefPage() {
             Set your own menu. Choose pickup or delivery. Keep 88% of every order.
             Mealed handles checkout, taxes, and payouts.
           </p>
-          <div className="flex flex-wrap gap-3 mt-7">
-            <Link
-              href="/signup?role=chef"
-              className={buttonVariants({ size: "lg" })}
-            >
-              Start chef application <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/safety"
-              className={buttonVariants({ variant: "secondary", size: "lg" })}
-            >
-              See our standards
-            </Link>
-          </div>
+          <ChefCtaButtons />
         </div>
 
-        <div id="earnings" className="bg-surface border border-border rounded-3xl p-7">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-muted mb-4">
-            Sample weekly earnings
-          </div>
-          <div className="space-y-3">
-            {[
-              { label: "5 customers · 5 meals/wk · $13/meal", take: 286 },
-              { label: "10 customers · 5 meals/wk · $13/meal", take: 572 },
-              { label: "20 customers · 5 meals/wk · $13/meal", take: 1144 },
-            ].map((row) => (
-              <div key={row.label} className="bg-white rounded-2xl border border-border p-4 flex items-center justify-between gap-3">
-                <div className="text-sm font-semibold flex-1">{row.label}</div>
-                <div className="text-right">
-                  <AnimatedNumber
-                    value={row.take}
-                    format={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }}
-                    className="m-display text-xl"
-                  />
-                  <div className="text-xs text-muted">your take / week</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-[11px] text-muted mt-4 leading-relaxed">
-            Illustrative. After 12% Mealed commission. Excludes delivery fees and tips.
-          </p>
+        <div id="earnings">
+          <EarningsCalculator />
         </div>
       </section>
 
-      {/* Benefits — bento grid */}
-      <BentoFeatures />
+      {/* Trust strip — what chefs say */}
+      <section className="border-y border-divider bg-yolk-soft/30">
+        <div className="max-w-7xl mx-auto px-5 md:px-12 py-10 md:py-12">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-accent-deep mb-5">
+            What chefs say
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                quote:
+                  "I went from cooking for my building to 18 regulars in three months. Mealed handled all the boring bits.",
+                name: "Maya O.",
+                role: "Plant-forward kitchen · Echo Park",
+              },
+              {
+                quote:
+                  "Payouts hit my account 24 hours after delivery. No chasing invoices. No marketplace fee per item.",
+                name: "Andre J.",
+                role: "Caribbean weekly · Highland Park",
+              },
+              {
+                quote:
+                  "Verification was quick and the kitchen-scan badge built trust fast. Customers actually mention it.",
+                name: "Lina P.",
+                role: "Gluten-free prep · Silver Lake",
+              },
+            ].map((t) => (
+              <figure
+                key={t.name}
+                className="bg-white border border-border rounded-2xl p-5 shadow-soft"
+              >
+                <blockquote className="m-display text-[18px] leading-snug tracking-tight">
+                  "{t.quote}"
+                </blockquote>
+                <figcaption className="mt-4 pt-4 border-t border-divider">
+                  <div className="text-sm font-bold">{t.name}</div>
+                  <div className="text-xs text-muted">{t.role}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits — editorial feature list */}
+      <ChefFeatures />
 
       {/* Onboarding steps */}
       <section className="bg-surface border-y border-divider">
@@ -90,13 +95,8 @@ export default function BecomeAChefPage() {
               </li>
             ))}
           </ol>
-          <div className="mt-10 text-center">
-            <Link
-              href="/signup?role=chef"
-              className={buttonVariants({ size: "lg" })}
-            >
-              Start your application <ArrowRight size={16} />
-            </Link>
+          <div className="mt-10">
+            <ChefCtaButtons centered />
           </div>
         </div>
       </section>

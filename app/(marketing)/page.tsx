@@ -9,10 +9,15 @@ import { MealImage } from "@/components/brand/meal-image";
 import { ChefAvatar } from "@/components/brand/chef-avatar";
 import { Rating } from "@/components/ui/rating";
 import { TrustPill } from "@/components/marketing/trust-pill";
-import { TestimonialHover } from "@/components/marketing/testimonial-hover";
+import { LandingHeroSearch } from "@/components/marketing/landing-hero-search";
 
 export default function LandingPage() {
-  const featured = SEED_CHEFS.filter((c) => c.featured);
+  // Show 3 chefs in the trust grid below (top-rated, verified). The old `featured`
+  // flag only covered 2, leaving a gap on the 3-column row.
+  const featured = SEED_CHEFS.filter((c) => c.verified)
+    .slice()
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 3);
   const popular = SEED_MEALS.slice(0, 4);
 
   return (
@@ -32,21 +37,7 @@ export default function LandingPage() {
             or delivery. Meal prep, made local.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 max-w-[480px] mt-7 p-1.5 rounded-full border border-border bg-white shadow-soft">
-            <div className="hidden sm:flex items-center gap-2 px-3 text-muted">
-              <MapPin size={16} />
-              <span className="text-sm text-ink font-semibold">Echo Park, LA</span>
-            </div>
-            <div className="hidden sm:block w-px self-stretch bg-divider my-1.5" />
-            <input
-              type="text"
-              placeholder="Search high-protein, vegan, family…"
-              className="flex-1 h-10 px-3 sm:px-1.5 bg-transparent outline-none text-[15px]"
-            />
-            <Link href="/browse" className={buttonVariants({ className: "h-10" })}>
-              Find meals
-            </Link>
-          </div>
+          <LandingHeroSearch />
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-xs text-muted">
             <span className="inline-flex items-center gap-1.5">
@@ -198,38 +189,14 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Featured meals */}
-      <section className="max-w-7xl mx-auto px-5 md:px-12 pb-16 md:pb-24">
-        <div className="flex items-end justify-between mb-6">
-          <h2 className="m-display text-2xl md:text-4xl">Popular near you.</h2>
-          <Link href="/browse" className="text-sm font-bold underline underline-offset-4">
-            Browse all
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {popular.map((meal) => (
-            <MealCard
-              key={meal.id}
-              meal={meal}
-              chef={chefMap[meal.chefId]}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* Featured chefs */}
       <section className="bg-surface border-y border-divider">
         <div className="max-w-7xl mx-auto px-5 md:px-12 py-16 md:py-24">
-          <div className="flex items-end justify-between mb-6">
-            <div>
-              <div className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-                Verified chefs
-              </div>
-              <h2 className="m-display text-2xl md:text-4xl">Cooked by people you can trust.</h2>
+          <div className="mb-6">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+              Verified chefs
             </div>
-            <Link href="/browse" className="text-sm font-bold underline underline-offset-4">
-              See all chefs
-            </Link>
+            <h2 className="m-display text-2xl md:text-4xl">Cooked by people you can trust.</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {featured.map((chef) => (
@@ -242,9 +209,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials with hover-reveal */}
-      <TestimonialHover />
 
       {/* Savings */}
       <section className="max-w-7xl mx-auto px-5 md:px-12 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
@@ -305,7 +269,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/safety"
-                className={buttonVariants({ variant: "secondary", size: "lg", className: "bg-transparent text-white border-white/30 hover:bg-white/10" })}
+                className="inline-flex items-center justify-center gap-2 h-[52px] px-[22px] rounded-full text-[15px] font-bold tracking-tight transition-all bg-transparent text-white border border-white/30 hover:bg-white/10 hover:border-white/60"
               >
                 See our standards
               </Link>

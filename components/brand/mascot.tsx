@@ -65,8 +65,17 @@ export function Wordmark({
       <Mascot size={size * 1.05} color={monochrome} />
       {!hideWord && (
         <span
-          className="font-display font-extrabold leading-none tracking-tightest"
-          style={{ fontSize: size * 1.2, color }}
+          className="font-display leading-none"
+          style={{
+            fontSize: size * 1.4,
+            color,
+            fontWeight: 700,
+            fontStyle: "italic",
+            letterSpacing: "-0.045em",
+            // WONK swaps in Fraunces' alternate glyphs (curlier "a", quirky "d"),
+            // SOFT rounds the terminals, opsz uses the display optical size.
+            fontVariationSettings: '"SOFT" 100, "opsz" 144, "WONK" 1',
+          }}
         >
           Mealed
         </span>

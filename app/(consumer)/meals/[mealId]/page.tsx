@@ -29,6 +29,7 @@ import { PillToggle } from "@/components/ui/pill-toggle";
 import { ChefAvatar } from "@/components/brand/chef-avatar";
 import { MealCard } from "@/components/marketplace/meal-card";
 import { useCart } from "@/lib/cart/store";
+import { useAppDownload } from "@/lib/app-download-store";
 import { useFavorites } from "@/lib/favorites/store";
 import { EmptyState } from "@/components/states/empty-state";
 import { formatPrice, cn } from "@/lib/utils";
@@ -68,6 +69,7 @@ export default function MealDetailPage() {
     meal?.pickupAvailable ? "pickup" : "delivery",
   );
   const addItem = useCart((s) => s.addItem);
+  const showAppDownload = useAppDownload((s) => s.show);
   const isFav = useFavorites((s) => (meal ? s.meals.includes(meal.id) : false));
   const toggleFav = useFavorites((s) => s.toggleMeal);
 
@@ -98,12 +100,12 @@ export default function MealDetailPage() {
   const savingsPct = savings > 0 ? Math.round((savings / subtotal) * 100) : 0;
 
   const handleAdd = () => {
-    const result = addItem({ mealId: meal.id, chefId: meal.chefId, quantity: qty });
-    if (result.replaced) {
-      toast.warning("Cart cleared — you can only order from one chef at a time.");
-    } else {
-      toast.success(`Added ${qty} × ${meal.name} to cart`);
-    }
+    // Ordering happens in the mobile app — funnel visitors there instead of
+    // mutating the (now-orphaned) cart store on the web.
+    void addItem;
+    showAppDownload(
+      `Order ${qty > 1 ? `${qty} × ` : ""}${meal.name} from the Mealed app.`,
+    );
   };
 
   const fulfillmentOptions: Array<{ value: "pickup" | "delivery"; label: string; icon: React.ReactNode; disabled?: boolean }> = [];
@@ -373,10 +375,10 @@ export default function MealDetailPage() {
           {/* CTA */}
           <div className="mt-5">
             <Button size="lg" block onClick={handleAdd} className="!h-14 !text-base">
-              Add {qty > 1 ? `${qty} ` : ""}to cart · {formatPrice(finalPrice)}
+              Order in the app · {formatPrice(finalPrice)}
             </Button>
             <p className="text-[11px] text-muted text-center mt-2.5">
-              Free to add — pay at checkout. Paid out to {chef.displayName} 24 hours after delivery.
+              Ordering, pickup, and delivery live in the Mealed mobile app.
             </p>
           </div>
         </div>

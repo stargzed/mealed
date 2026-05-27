@@ -4,19 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Wordmark } from "@/components/brand/mascot";
-import { buttonVariants } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth/store";
+import { Button } from "@/components/ui/button";
+import { useAppDownload } from "@/lib/app-download-store";
 
 const NAV = [
   ["How it works", "/how-it-works"],
-  ["Browse meals", "/browse"],
   ["For chefs", "/become-a-chef"],
   ["Trust & safety", "/safety"],
 ] as const;
 
 export function MarketingHeader() {
-  const user = useAuth((s) => s.user);
   const [open, setOpen] = useState(false);
+  const show = useAppDownload((s) => s.show);
 
   return (
     <header className="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-divider">
@@ -34,29 +33,9 @@ export function MarketingHeader() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          {user ? (
-            <Link
-              href={
-                user.role === "chef"
-                  ? "/chef/dashboard"
-                  : user.role === "admin"
-                  ? "/admin/dashboard"
-                  : "/home"
-              }
-              className="text-[13px] font-bold text-ink px-3 py-2"
-            >
-              Open app →
-            </Link>
-          ) : (
-            <>
-              <Link href="/login" className="text-[13px] font-bold text-ink px-3 py-2">
-                Log in
-              </Link>
-              <Link href="/signup" className={buttonVariants({ size: "sm" })}>
-                Find meals
-              </Link>
-            </>
-          )}
+          <Button size="sm" onClick={() => show()}>
+            Get the app
+          </Button>
         </div>
 
         <button
@@ -80,21 +59,17 @@ export function MarketingHeader() {
               {label}
             </Link>
           ))}
-          <div className="pt-2 flex gap-2">
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className={buttonVariants({ variant: "secondary", size: "sm", block: true })}
+          <div className="pt-2">
+            <Button
+              size="sm"
+              block
+              onClick={() => {
+                setOpen(false);
+                show();
+              }}
             >
-              Log in
-            </Link>
-            <Link
-              href="/signup"
-              onClick={() => setOpen(false)}
-              className={buttonVariants({ size: "sm", block: true })}
-            >
-              Find meals
-            </Link>
+              Get the app
+            </Button>
           </div>
         </div>
       )}
