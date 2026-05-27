@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sparkles, ChefHat, UtensilsCrossed, ShoppingBag, Clock } from "lucide-react";
+import {
+  Sparkles,
+  ChefHat,
+  UtensilsCrossed,
+  ShoppingBag,
+  Clock,
+  Package,
+} from "lucide-react";
 
 interface Row {
  Icon: typeof ChefHat;
@@ -31,6 +38,15 @@ const ROWS: Row[] = [
   weekly: 90,
   perMeal: "$18",
   tone: "default",
+ },
+ {
+  Icon: Package,
+  label: "Mail-delivery meal prep",
+  weeklyLabel: "$75",
+  weekly: 75,
+  perMeal: "$15",
+  tone: "default",
+  note: "frozen / shipped",
  },
  {
   Icon: ChefHat,
