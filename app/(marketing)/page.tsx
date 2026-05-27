@@ -9,6 +9,8 @@ import { ChefAvatar } from "@/components/brand/chef-avatar";
 import { Rating } from "@/components/ui/rating";
 import { TrustPill } from "@/components/marketing/trust-pill";
 import { LandingHeroSearch } from "@/components/marketing/landing-hero-search";
+import { SavingsChart } from "@/components/marketing/savings-chart";
+import { FindMealsButton } from "@/components/marketing/find-meals-button";
 
 export default function LandingPage() {
   // Show 3 chefs in the trust grid below (top-rated, verified). The old `featured`
@@ -222,26 +224,9 @@ export default function LandingPage() {
             Compared to $20–$30+ fast food meals, Mealed-style home-cooked meals at
             $13–$18 can save customers around $8–$10 per meal — without the prep work.
           </p>
-          <Link href="/browse" className={buttonVariants({ size: "lg", className: "mt-7" })}>
-            Find meals near me
-          </Link>
+          <FindMealsButton />
         </div>
-        <div className="bg-accent-soft border border-accent/20 rounded-3xl p-8 grid grid-cols-2 gap-4">
-          {[
-            { label: "Fast food lunch", price: "$22", note: "5 meals/wk = $110" },
-            { label: "Restaurant meal prep", price: "$18", note: "5 meals/wk = $90" },
-            { label: "DIY meal prep", price: "$8", note: "+ 2 hrs/wk of cooking" },
-            { label: "Mealed", price: "$13", note: "5 meals/wk = $65" },
-          ].map((row) => (
-            <div key={row.label} className="bg-white rounded-2xl p-4 border border-border">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                {row.label}
-              </div>
-              <div className="m-display text-3xl mt-2">{row.price}</div>
-              <div className="text-xs text-muted mt-1">{row.note}</div>
-            </div>
-          ))}
-        </div>
+        <SavingsChart />
       </section>
 
       {/* Chef CTA */}

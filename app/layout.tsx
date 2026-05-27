@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Fraunces } from "next/font/google";
 import { Toaster } from "sonner";
-import { RoleSwitcher } from "@/components/layout/role-switcher";
 import { AppDownloadDialog } from "@/components/marketing/app-download-dialog";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
@@ -43,18 +42,12 @@ export const metadata: Metadata = {
     default: "Mealed",
     template: "Mealed",
   },
-  description:
-    "Find verified local chefs for weekly meal prep, custom meals, pickup, and delivery.",
+  // Intentionally no `description`, `openGraph`, or `twitter` card metadata —
+  // we want shared/pasted links (Discord, iMessage, Slack, etc.) to unfurl
+  // as just the URL with no preview blurb underneath.
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  openGraph: {
-    title: "Mealed.org — Home-cooked meal prep from trusted local chefs",
-    description:
-      "Find verified local chefs for weekly meal prep, custom meals, pickup, and delivery.",
-    siteName: "Mealed.org",
-    type: "website",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -68,7 +61,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <AppDownloadDialog />
           <Toaster position="bottom-center" richColors closeButton />
-          <RoleSwitcher />
         </TooltipProvider>
       </body>
     </html>
