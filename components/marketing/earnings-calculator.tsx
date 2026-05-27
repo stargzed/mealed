@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { type Format } from "@number-flow/react";
 import {
   TrendingUp,
   Users,
@@ -42,11 +43,11 @@ export function EarningsCalculator() {
     return { gross: g, weekly: w, monthly: Math.round(w * 4.33), yearly: w * 52 };
   }, [customers, meals, price]);
 
-  const currency = {
+  const currency: Format = {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
-  } as const;
+  };
 
   return (
     <div className="relative rounded-3xl overflow-hidden border border-border bg-gradient-to-br from-yolk-soft/60 via-white to-white">
@@ -221,7 +222,7 @@ function PeriodCard({
   icon: React.ReactNode;
   label: string;
   value: number;
-  format: Intl.NumberFormatOptions;
+  format: Format;
   highlight?: boolean;
   muted?: boolean;
 }) {

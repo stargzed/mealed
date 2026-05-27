@@ -24,7 +24,7 @@ interface Plan {
   id: "free" | "pro" | "premium";
   name: string;
   blurb: string;
-  Icon: React.ComponentType<{ size?: number; className?: string }>;
+  Icon: React.ComponentType<{ size?: number | string; className?: string }>;
   monthly: number;
   yearly: number;
   badge?: string;

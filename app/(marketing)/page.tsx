@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Zap, Camera, Check, ChefHat, MapPin, Search, Shield, Star, Truck } from "lucide-react";
 import { SEED_CHEFS, SEED_MEALS, chefMap } from "@/lib/seed";
-import { MealCard } from "@/components/marketplace/meal-card";
 import { ChefCard } from "@/components/marketplace/chef-card";
 import { buttonVariants } from "@/components/ui/button";
 import { Mascot } from "@/components/brand/mascot";
@@ -16,9 +15,8 @@ export default function LandingPage() {
   // flag only covered 2, leaving a gap on the 3-column row.
   const featured = SEED_CHEFS.filter((c) => c.verified)
     .slice()
-    .sort((a, b) => b.rating - a.rating)
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0))
     .slice(0, 3);
-  const popular = SEED_MEALS.slice(0, 4);
 
   return (
     <div className="bg-white">
