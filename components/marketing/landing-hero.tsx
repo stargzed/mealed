@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Check, ArrowRight, Star } from "lucide-react";
+import { MapPin, Check, ArrowRight, Star, ChefHat } from "lucide-react";
 import { useAppDownload } from "@/lib/app-download-store";
 
 /**
@@ -246,7 +246,7 @@ function HeroComposition() {
             PICKUP
           </span>
         </div>
-        <div style={{ fontWeight: 600, fontSize: 15 }}>5 meals · Chef Maya</div>
+        <div style={{ fontWeight: 600, fontSize: 15 }}>5 meals · weekly prep</div>
         <div
           className="flex items-center justify-between"
           style={{ color: "var(--m-sub)", fontSize: 13 }}
@@ -284,28 +284,26 @@ function HeroComposition() {
             width: 40,
             height: 40,
             borderRadius: "50%",
-            overflow: "hidden",
             border: "2px solid var(--m-bg-elev)",
             flex: "0 0 40px",
+            display: "grid",
+            placeItems: "center",
+            background: "color-mix(in oklch, var(--m-accent) 14%, transparent)",
+            color: "var(--m-accent)",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=120&h=120&fit=crop&crop=faces"
-            alt="Chef Maya"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <ChefHat size={20} />
         </span>
         <div className="grid">
           <span style={{ fontWeight: 600, fontSize: 14 }}>
-            Chef Maya · just delivered
+            Verified chef · just delivered
           </span>
           <span
             className="inline-flex items-center gap-1.5 text-[12px]"
             style={{ color: "var(--m-muted)" }}
           >
             <Star size={11} style={{ color: "var(--m-orange)", fill: "var(--m-orange)" }} />
-            Top-rated this week
+            Rated per dish
           </span>
         </div>
       </div>
