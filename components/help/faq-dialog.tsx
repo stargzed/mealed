@@ -36,7 +36,7 @@ const FAQ = [
  },
  {
   title: "Payouts (chefs)",
-  body: "Stripe Connect pays you 24 hours after each completed order. 12% platform commission. No subscription, no monthly fee.",
+  body: "Stripe Connect pays you 24 hours after each completed order. 7% platform commission. No subscription, no monthly fee.",
  },
  {
   title: "Allergies & dietary needs",

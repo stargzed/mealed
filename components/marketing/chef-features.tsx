@@ -19,9 +19,9 @@ const FEATURES: Feature[] = [
  {
   Icon: DollarSign,
   number: "02",
-  title: "Keep 88% of every order",
+  title: "Keep 93% of every order",
   description:
-   "Flat 12% commission. No subscription, no listing fees, no monthly minimums.",
+   "Flat 7% commission. No subscription, no listing fees, no monthly minimums.",
  },
  {
   Icon: Truck,

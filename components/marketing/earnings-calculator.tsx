@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { AnimatedNumber } from "@/components/ui/animated-number";
 
-const COMMISSION_RATE = 0.12; // Mealed keeps 12%, chef keeps 88%.
+const COMMISSION_RATE = 0.07; // Mealed keeps 7%, chef keeps 93%.
 
 interface Range {
  min: number;
@@ -29,8 +29,8 @@ const RANGES: Record<"customers" | "meals" | "price", Range> = {
 
 /**
  * Interactive weekly-earnings projection for chefs. Three sliders feed a live
- * calculation of weekly / monthly / yearly take (88% of gross after Mealed's
- * 12% commission). Replaces the old static "Sample weekly earnings" card.
+ * calculation of weekly / monthly / yearly take (93% of gross after Mealed's
+ * 7% commission). Replaces the old static "Sample weekly earnings" card.
  */
 export function EarningsCalculator() {
  const [customers, setCustomers] = useState(10);
@@ -78,7 +78,7 @@ export function EarningsCalculator() {
      <span className="text-sm text-muted font-semibold">/ week</span>
     </div>
     <div className="mt-1 text-xs text-muted">
-     Your take after Mealed's 12% commission.
+     Your take after Mealed's 7% commission.
     </div>
 
     {/* Sliders */}
@@ -134,7 +134,7 @@ export function EarningsCalculator() {
     </div>
 
     <p className="text-[11px] text-muted mt-5 leading-relaxed">
-     Illustrative. After Mealed's 12% commission. Excludes delivery fees and
+     Illustrative. After Mealed's 7% commission. Excludes delivery fees and
      tips those go straight to you.
     </p>
    </div>
@@ -157,56 +157,37 @@ function Slider({
  range: Range;
  display: string;
 }) {
- const pct = ((value - range.min) / (range.max - range.min)) * 100;
  return (
   <div>
-   <div className="flex items-center justify-between text-xs font-semibold text-ink mb-1.5">
+   <div className="flex items-center justify-between text-xs font-semibold text-ink mb-2">
     <span className="inline-flex items-center gap-1.5 text-sub">
      <span className="text-muted">{icon}</span>
      {label}
     </span>
     <span className="m-display text-base text-ink leading-none">{display}</span>
    </div>
-   <div className="relative h-7 flex items-center">
-    {/* Track background */}
-    <div className="absolute inset-x-0 h-1.5 rounded-full bg-soft border border-divider" />
-    {/* Filled portion */}
-    <div
-     className="absolute h-1.5 rounded-full bg-ink"
-     style={{ width: `${pct}%` }}
-    />
-    <input
-     type="range"
-     min={range.min}
-     max={range.max}
-     step={range.step}
-     value={value}
-     onChange={(e) => onChange(Number(e.target.value))}
-     aria-label={label}
-     className="
-      relative w-full appearance-none bg-transparent cursor-pointer
-      [&::-webkit-slider-thumb]:appearance-none
-      [&::-webkit-slider-thumb]:h-5
-      [&::-webkit-slider-thumb]:w-5
-      [&::-webkit-slider-thumb]:rounded-full
-      [&::-webkit-slider-thumb]:bg-white
-      [&::-webkit-slider-thumb]:border-2
-      [&::-webkit-slider-thumb]:border-ink
-      [&::-webkit-slider-thumb]:shadow-[0_2px_6px_rgba(5,5,5,0.18)]
-      [&::-webkit-slider-thumb]:transition-transform
-      [&::-webkit-slider-thumb]:duration-150
-      hover:[&::-webkit-slider-thumb]:scale-110
-      active:[&::-webkit-slider-thumb]:scale-95
-      [&::-moz-range-thumb]:h-5
-      [&::-moz-range-thumb]:w-5
-      [&::-moz-range-thumb]:rounded-full
-      [&::-moz-range-thumb]:bg-white
-      [&::-moz-range-thumb]:border-2
-      [&::-moz-range-thumb]:border-ink
-      [&::-moz-range-thumb]:cursor-pointer
-     "
-    />
-   </div>
+   {/* Native slider, no custom thumb. accent-color paints the fill + thumb in
+      the brand ink color in all modern browsers — guaranteed draggable. */}
+   <input
+    type="range"
+    min={range.min}
+    max={range.max}
+    step={range.step}
+    value={value}
+    // onInput is the W3C event that fires on EVERY value change including
+    // during drag; some Webkit builds were swallowing onChange between
+    // mousedown and mouseup, leaving the displayed numbers stuck.
+    onInput={(e) => onChange(Number((e.target as HTMLInputElement).value))}
+    onChange={(e) => onChange(Number(e.target.value))}
+    aria-label={label}
+    style={{
+     width: "100%",
+     height: 24,
+     accentColor: "var(--m-ink)",
+     cursor: "pointer",
+     display: "block",
+    }}
+   />
   </div>
  );
 }

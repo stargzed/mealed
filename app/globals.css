@@ -2,55 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mealed design tokens ported from the standalone UI tokens.css */
+/* Mealed 3.0  Garden vibe.
+   Warm cream backgrounds, deep forest green primary, burnt orange accent.
+   Old yellow/black tokens kept as legacy fallbacks below. */
 :root {
- /* Neutral palette */
- --m-bg: #FFFFFF;
- --m-surface: #FAFAF7;
- --m-soft: #F7F7F5;
+ /* Garden vibe surfaces */
+ --m-bg: #F6F2E7;
+ --m-surface: #FBF7EE;
+ --m-soft: #ECE5D2;
  --m-card: #FFFFFF;
- --m-ink: #050505;
- --m-sub: #4B5563;
- --m-muted: #6B7280;
- --m-faint: #9CA3AF;
- --m-border: #E5E7EB;
- --m-divider: #F1F1F1;
- --m-dark: #111827;
+ --m-bg-elev: #FFFFFF;
+ --m-bg-inset: #ECE5D2;
 
- /* The one accent (Mealed green) */
- --m-accent: #00B86B;
- --m-accent-soft: #DFF3C3;
- --m-accent-deep: #14532D;
- --m-accent-hover: #009E5C;
+ /* Ink */
+ --m-ink: #14201A;
+ --m-sub: #3F4F47;
+ --m-muted: #7C8A82;
+ --m-faint: #A6B2A8;
+ --m-border: rgba(20, 32, 26, 0.10);
+ --m-divider: rgba(20, 32, 26, 0.08);
+ --m-line-2: rgba(20, 32, 26, 0.20);
+ --m-dark: #163A22;
 
- /* Brand yolk + butter reserved for hero / splash only */
+ /* Forest primary (CTAs, links, key emphasis) */
+ --m-accent: #1F4D2E;
+ --m-accent-soft: #E5DCBF;
+ --m-accent-deep: #163A22;
+ --m-accent-hover: #163A22;
+
+ /* Hero strip */
+ --m-hero-bg: #1F4D2E;
+ --m-hero-ink: #F6F2E7;
+
+ /* Garden orange accent */
+ --m-orange: #D88A2B;
+ --m-orange-deep: #B96D1A;
+ --m-tag-bg: #E5DCBF;
+ --m-tag-ink: #2A3A2F;
+
+ /* Legacy yolk tokens (kept so un-migrated screens still look ok) */
  --m-yolk: #F8F060;
  --m-butter: #FFDB6A;
  --m-yolk-soft: #FDF8C5;
 
- /* Subtle warnings */
+ /* Warnings */
  --m-warn: #B45309;
  --m-warn-soft: #FEF3C7;
 
- /* Tomato used sparingly for destructive */
+ /* Destructive */
  --m-tomato: #D14040;
  --m-tomato-soft: #FBE0DA;
 
- /* Shape */
- --m-radius-sm: 8px;
- --m-radius: 14px;
- --m-radius-lg: 20px;
- --m-radius-xl: 28px;
+ /* Shape (soft radius scale matches the 3.0 spec) */
+ --m-radius-xs: 10px;
+ --m-radius-sm: 16px;
+ --m-radius: 22px;
+ --m-radius-md: 24px;
+ --m-radius-lg: 36px;
+ --m-radius-xl: 48px;
+ --m-radius-pill: 999px;
 
  /* Shadow */
- --m-shadow-sm: 0 1px 2px rgba(5, 5, 5, 0.04);
- --m-shadow: 0 1px 3px rgba(5, 5, 5, 0.06), 0 4px 16px rgba(5, 5, 5, 0.04);
- --m-shadow-lg: 0 8px 30px rgba(5, 5, 5, 0.08), 0 2px 6px rgba(5, 5, 5, 0.04);
+ --m-shadow-sm: 0 1px 0 rgba(20, 32, 26, 0.04), 0 1px 2px rgba(20, 32, 26, 0.04);
+ --m-shadow: 0 1px 0 rgba(20, 32, 26, 0.04), 0 8px 30px rgba(20, 32, 26, 0.06);
+ --m-shadow-lg: 0 30px 60px -20px rgba(20, 32, 26, 0.18);
 
- /* Type */
- --m-font-ui: "Plus Jakarta Sans", -apple-system, system-ui, sans-serif;
- --m-font-display: "Fraunces", "Plus Jakarta Sans", -apple-system, system-ui, sans-serif;
- --m-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+ /* Type — Geist everywhere via the official `geist` package which exposes
+    its CSS variable as --font-geist-sans on the <html> element. */
+ --m-font-ui: var(--font-geist-sans, "Geist"), -apple-system, system-ui, sans-serif;
+ --m-font-display: var(--font-geist-sans, "Geist"), -apple-system, system-ui, sans-serif;
+ --m-font-mono: var(--font-geist-sans, "Geist"), ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 html,
@@ -79,18 +100,80 @@ body {
  display: none;
 }
 
-/* Display type editorial serif with soft terminals + larger optical size.
-  Fraunces' SOFT axis (90) gives the headlines a slightly hand-cut feel that
-  matches the "home-cooked, local" brand vs. the geometric body sans. */
+/* Display type  Geist semibold with tight tracking.
+   Matches the Mealed 3.0 spec: weight 600, tracking -0.025em, line-height 1. */
 .m-display {
  font-family: var(--m-font-display);
- font-weight: 700;
- letter-spacing: -0.02em;
- line-height: 1.02;
- font-variation-settings: "SOFT" 90, "opsz" 144;
+ font-weight: 600;
+ letter-spacing: -0.025em;
+ line-height: 1.0;
 }
 .m-mono {
  font-family: var(--m-font-mono);
+}
+
+/* Pulse  used by hero live tags + COOK DAY badges */
+@keyframes pulse {
+ 0%, 100% { opacity: 1; transform: scale(1); }
+ 50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Marquee  used by the trust strip */
+@keyframes marquee {
+ from { transform: translateX(0); }
+ to { transform: translateX(-50%); }
+}
+
+/* Float-in  used by hero floating chips */
+@keyframes float-in {
+ from { opacity: 0; transform: translateY(8px); }
+ to { opacity: 1; transform: translateY(0); }
+}
+
+/* Range slider thumb — used by the chef EarningsCalculator. Tailwind arbitrary
+   variants for ::-webkit-slider-thumb were unreliable; explicit CSS works in
+   every browser and keeps the slider draggable. */
+.m-slider {
+ -webkit-appearance: none;
+ appearance: none;
+ background: transparent;
+ width: 100%;
+ height: 28px;
+ cursor: pointer;
+ padding: 0;
+ margin: 0;
+}
+.m-slider::-webkit-slider-runnable-track {
+ height: 28px;
+ background: transparent;
+}
+.m-slider::-moz-range-track {
+ height: 28px;
+ background: transparent;
+}
+.m-slider::-webkit-slider-thumb {
+ -webkit-appearance: none;
+ appearance: none;
+ width: 20px;
+ height: 20px;
+ margin-top: 4px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid var(--m-ink);
+ box-shadow: 0 2px 6px rgba(20, 32, 26, 0.18);
+ cursor: grab;
+ transition: transform 150ms ease;
+}
+.m-slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
+.m-slider::-webkit-slider-thumb:active { transform: scale(0.95); cursor: grabbing; }
+.m-slider::-moz-range-thumb {
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
+ background: #FFFFFF;
+ border: 2px solid var(--m-ink);
+ box-shadow: 0 2px 6px rgba(20, 32, 26, 0.18);
+ cursor: grab;
 }
 
 /* Meal image gradient fallback */

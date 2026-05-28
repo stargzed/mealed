@@ -1,35 +1,6 @@
 import { Mascot } from "@/components/brand/mascot";
-import { AnimatedNumber } from "@/components/ui/animated-number";
 
 export const metadata = { title: "About" };
-
-function StatTile({
-  value,
-  label,
-  suffix,
-  decimals,
-}: {
-  value: number;
-  label: string;
-  suffix?: string;
-  decimals?: number;
-}) {
-  return (
-    <div className="bg-surface border border-border rounded-2xl p-5">
-      <AnimatedNumber
-        value={value}
-        format={
-          decimals
-            ? { minimumFractionDigits: decimals, maximumFractionDigits: decimals }
-            : undefined
-        }
-        suffix={suffix}
-        className="m-display text-3xl"
-      />
-      <div className="text-xs text-muted mt-1">{label}</div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -66,21 +37,6 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14">
-        <StatTile
-          value={240}
-          suffix="+"
-          label="Verified chefs"
-        />
-        <StatTile value={1} label="Cities (LA, more soon)" />
-        <StatTile value={12400} label="Meals served" />
-        <StatTile
-          value={4.88}
-          decimals={2}
-          suffix="★"
-          label="Avg. dish rating"
-        />
-      </div>
     </div>
   );
 }

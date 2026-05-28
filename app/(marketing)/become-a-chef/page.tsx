@@ -17,7 +17,7 @@ export default function BecomeAChefPage() {
       Cook for your neighborhood.
      </h1>
      <p className="text-lg text-sub mt-5 max-w-[520px] leading-relaxed">
-      Set your own menu. Choose pickup or delivery. Keep 88% of every order.
+      Set your own menu. Choose pickup or delivery. Keep 93% of every order.
       Mealed handles checkout, taxes, and payouts.
      </p>
      <ChefCtaButtons />

@@ -50,8 +50,7 @@ export function TrustPill() {
     ))}
    </div>
    <p className="pl-3 text-xs text-sub whitespace-nowrap">
-    Trusted by{" "}
-    <strong className="font-semibold text-ink">100+</strong> verified chefs in LA
+    Verified local chefs in LA
    </p>
   </div>
  );

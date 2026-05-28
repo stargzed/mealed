@@ -1,7 +1,7 @@
 import type { FeeBreakdown } from "./types";
 
 export const FEE_CONFIG = {
-  chefCommissionRate: 0.12,
+  chefCommissionRate: 0.07,
   consumerServiceFeeRate: 0.06,
   customRequestFeeRate: 0.15,
   minimumProtectionFee: 2.99,

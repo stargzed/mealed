@@ -14,7 +14,7 @@ const SECTIONS = [
  {
   title: "3. Orders, payments, fees",
   body:
-   "Orders are billed at checkout. The consumer service fee (6%) and Mealed protection fee (5% with a $2.99 minimum) are non-refundable except where stated under Section 7. Chefs are paid via Stripe Connect 24 hours after a completed order, less a 12% platform commission.",
+   "Orders are billed at checkout. The consumer service fee (6%) and Mealed protection fee (5% with a $2.99 minimum) are non-refundable except where stated under Section 7. Chefs are paid via Stripe Connect 24 hours after a completed order, less a 7% platform commission.",
  },
  {
   title: "4. Allergens",
