@@ -69,49 +69,6 @@ const MEALS = [
   },
 ];
 
-const CHEFS = [
-  {
-    name: "Maya",
-    desc: "High-protein weekly prep",
-    rating: "4.93",
-    dist: "1.2 mi",
-    img: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=240&h=240&fit=crop&crop=faces",
-    spec: "Salmon · Chicken · Bowls",
-  },
-  {
-    name: "Lina",
-    desc: "Vegan & gluten-free meal prep",
-    rating: "4.95",
-    dist: "0.8 mi",
-    img: "https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=240&h=240&fit=crop&crop=faces",
-    spec: "Vegan · Plant-forward",
-  },
-  {
-    name: "Andre",
-    desc: "Family dinners & comfort meals",
-    rating: "4.86",
-    dist: "2.4 mi",
-    img: "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=240&h=240&fit=crop&crop=faces",
-    spec: "Family · Comfort",
-  },
-  {
-    name: "Sofia",
-    desc: "Latin-inspired weekly menus",
-    rating: "4.91",
-    dist: "1.7 mi",
-    img: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=240&h=240&fit=crop&crop=faces",
-    spec: "Latin · Bowls · Stews",
-  },
-  {
-    name: "Marcus",
-    desc: "BBQ & smoked specialties",
-    rating: "4.88",
-    dist: "3.1 mi",
-    img: "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=240&h=240&fit=crop&crop=faces",
-    spec: "BBQ · Smoked · Sides",
-  },
-];
-
 const CHEF_INTROS = [
   {
     name: "Maya",
@@ -170,7 +127,6 @@ export default function LandingPage() {
       <ChefIntrosSection />
       <HowItWorksPreview />
       <SavingsSection />
-      <ChefsSection />
       <TrustSection />
       <ForChefsCTA />
       <FinalCTA />
@@ -720,86 +676,6 @@ function SavingsSection() {
           </div>
         </div>
         <SavingsChart />
-      </div>
-    </section>
-  );
-}
-
-// ===========================================================================
-// CHEFS — verified chef grid
-// ===========================================================================
-function ChefsSection() {
-  const show = useAppDownload((s) => s.show);
-  return (
-    <section className="py-14 md:py-24" style={{ background: "var(--m-soft)" }}>
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8">
-        <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
-          <div>
-            <Eyebrow>Verified chefs</Eyebrow>
-            <h2 className="m-display mt-3.5 max-w-2xl" style={h2Style}>
-              Cooked by people you can trust.
-            </h2>
-          </div>
-          <p className="max-w-[380px]" style={{ ...leadStyle, margin: 0 }}>
-            Every chef passes an ID check, a 360° kitchen scan, and a sample-meal review.
-            Then you decide.
-          </p>
-        </div>
-        <div
-          className="grid gap-4"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}
-        >
-          {CHEFS.map((c) => (
-            <article
-              key={c.name}
-              className="grid gap-3.5 transition-transform hover:-translate-y-0.5"
-              style={{
-                background: "var(--m-bg-elev)",
-                borderRadius: "var(--m-radius-md)",
-                padding: "24px 20px 22px",
-                border: "1px solid var(--m-border)",
-              }}
-            >
-              <div className="flex items-center gap-3.5">
-                <ChefAvatar src={c.img} size={56} />
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: 17 }}>Chef {c.name}</div>
-                  <div
-                    className="inline-flex items-center gap-1.5 text-[13px]"
-                    style={{ color: "var(--m-muted)" }}
-                  >
-                    <Star size={11} style={{ color: "var(--m-orange)", fill: "var(--m-orange)" }} />
-                    {c.rating} · {c.dist}
-                  </div>
-                </div>
-              </div>
-              <p className="text-[14px]" style={{ color: "var(--m-sub)", margin: 0 }}>
-                {c.desc}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {c.spec.split(" · ").map((s) => (
-                  <span
-                    key={s}
-                    className="inline-flex items-center text-[11px] px-2.5 py-1 rounded-full border"
-                    style={{
-                      borderColor: "var(--m-line-2)",
-                      color: "var(--m-sub)",
-                    }}
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-              <button
-                onClick={() => show(`View Chef ${c.name}'s menu in the Mealed app.`)}
-                className="mt-1.5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-left"
-                style={{ color: "var(--m-accent)" }}
-              >
-                View menu <ArrowUpRight size={12} />
-              </button>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
