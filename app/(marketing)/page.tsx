@@ -234,7 +234,7 @@ function ThisWeekSection() {
   const show = useAppDownload((s) => s.show);
   const filters = ["All", "High protein", "Vegan", "Family size", "Under $12", "Pickup", "Delivery"];
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-14 md:py-24">
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
         <div className="flex items-end justify-between flex-wrap gap-6 mb-8">
           <div>
@@ -391,7 +391,7 @@ function ChefIntrosSection() {
   const show = useAppDownload((s) => s.show);
   return (
     <section
-      className="py-20 md:py-24"
+      className="py-14 md:py-24"
       style={{ background: "var(--m-ink)", color: "var(--m-bg)" }}
     >
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
@@ -415,10 +415,7 @@ function ChefIntrosSection() {
           </p>
         </div>
 
-        <div
-          className="grid items-start gap-8"
-          style={{ gridTemplateColumns: "1.2fr 0.8fr" }}
-        >
+        <div className="grid items-start gap-8 grid-cols-1 md:[grid-template-columns:1.2fr_0.8fr]">
           {/* Main video */}
           <VideoTile
             key={chef.name}
@@ -629,7 +626,7 @@ function HowItWorksPreview() {
     { n: "05", t: "Review per dish", d: "Help future eaters. Rate the chef and each meal.", Icon: Star },
   ];
   return (
-    <section className="py-20 md:py-24" style={{ background: "var(--m-soft)" }}>
+    <section className="py-14 md:py-24" style={{ background: "var(--m-soft)" }}>
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
         <header className="grid gap-4 max-w-[900px] mb-14">
           <Eyebrow>How Mealed works</Eyebrow>
@@ -689,11 +686,8 @@ function HowItWorksPreview() {
 function SavingsSection() {
   const show = useAppDownload((s) => s.show);
   return (
-    <section className="py-20 md:py-24">
-      <div
-        className="max-w-[1320px] mx-auto px-5 md:px-8 grid gap-16 items-center"
-        style={{ gridTemplateColumns: "0.9fr 1.1fr" }}
-      >
+    <section className="py-14 md:py-24">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 grid gap-10 md:gap-16 items-center grid-cols-1 md:[grid-template-columns:0.9fr_1.1fr]">
         <div>
           <Eyebrow>Eat better, spend less</Eyebrow>
           <h2 className="m-display mt-3.5 mb-5" style={h2Style}>
@@ -737,7 +731,7 @@ function SavingsSection() {
 function ChefsSection() {
   const show = useAppDownload((s) => s.show);
   return (
-    <section className="py-20 md:py-24" style={{ background: "var(--m-soft)" }}>
+    <section className="py-14 md:py-24" style={{ background: "var(--m-soft)" }}>
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
         <div className="flex items-end justify-between flex-wrap gap-6 mb-12">
           <div>
@@ -822,7 +816,7 @@ function TrustSection() {
     { t: "Reviews per dish", d: "Rate each meal, not just the chef. Filter chefs by your favorite dish.", Icon: Star },
   ];
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-14 md:py-24">
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
         <header className="grid gap-4 max-w-[900px] mb-14">
           <Eyebrow>Trust &amp; safety</Eyebrow>
@@ -834,7 +828,7 @@ function TrustSection() {
             We chose both.
           </p>
         </header>
-        <div className="grid gap-14 items-start" style={{ gridTemplateColumns: "1.1fr 0.9fr" }}>
+        <div className="grid gap-10 md:gap-14 items-start grid-cols-1 md:[grid-template-columns:1.1fr_0.9fr]">
           <div className="grid gap-0">
             {items.map((it, i) => (
               <div
@@ -958,11 +952,11 @@ function ForChefsCTA() {
   ];
   return (
     <section
-      className="py-20 md:py-24"
+      className="py-14 md:py-24"
       style={{ background: "var(--m-ink)", color: "var(--m-bg)" }}
     >
       <div className="max-w-[1320px] mx-auto px-5 md:px-8">
-        <div className="grid gap-16 items-start" style={{ gridTemplateColumns: "1fr 1fr" }}>
+        <div className="grid gap-10 md:gap-16 items-start grid-cols-1 md:grid-cols-2">
           <div className="grid gap-6">
             <Eyebrow style={{ color: "color-mix(in oklch, var(--m-bg) 60%, transparent)" }}>
               For chefs
@@ -1047,7 +1041,7 @@ function ForChefsCTA() {
 function FinalCTA() {
   const show = useAppDownload((s) => s.show);
   return (
-    <section style={{ padding: "96px 0", background: "var(--m-soft)" }}>
+    <section className="py-16 md:py-24" style={{ background: "var(--m-soft)" }}>
       <div className="max-w-[1320px] mx-auto px-5 md:px-8 text-center grid gap-7 justify-items-center">
         <Eyebrow>Meal prep, made local.</Eyebrow>
         <h2
@@ -1055,7 +1049,7 @@ function FinalCTA() {
           style={{
             margin: 0,
             maxWidth: 900,
-            fontSize: "clamp(48px, 6vw, 88px)",
+            fontSize: "clamp(32px, 7vw, 88px)",
             lineHeight: 0.96,
             letterSpacing: "-0.03em",
           }}
@@ -1137,8 +1131,9 @@ function ChefAvatar({ src, size = 56 }: { src: string; size?: number }) {
 
 const h2Style: React.CSSProperties = {
   margin: 0,
-  fontSize: "clamp(36px, 5vw, 72px)",
-  lineHeight: 1.0,
+  // Lower min so it doesn't overflow tight phone screens.
+  fontSize: "clamp(28px, 6.5vw, 72px)",
+  lineHeight: 1.05,
   letterSpacing: "-0.025em",
 };
 

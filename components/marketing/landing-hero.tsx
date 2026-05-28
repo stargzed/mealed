@@ -24,26 +24,20 @@ export function LandingHero() {
 
   return (
     <section
+      className="pt-10 pb-16 md:pt-14 md:pb-24 border-b overflow-hidden relative"
       style={{
         background: "var(--m-hero-bg)",
         color: "var(--m-hero-ink)",
-        paddingTop: 56,
-        paddingBottom: 96,
-        borderBottom: "1px solid var(--m-border)",
-        position: "relative",
-        overflow: "hidden",
+        borderColor: "var(--m-border)",
       }}
     >
       <div
         className="max-w-[1320px] mx-auto px-5 md:px-8"
         style={{ position: "relative", zIndex: 1 }}
       >
-        <div
-          className="grid items-center gap-10 lg:gap-14"
-          style={{ gridTemplateColumns: "1.05fr 0.95fr" }}
-        >
+        <div className="grid items-center gap-10 lg:gap-14 grid-cols-1 md:[grid-template-columns:1.05fr_0.95fr]">
           {/* Left: copy + finder */}
-          <div className="grid gap-8 min-w-0">
+          <div className="grid gap-6 md:gap-8 min-w-0">
             <div className="inline-flex items-center gap-2.5 self-start">
               <span
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[12px] font-medium"
@@ -70,7 +64,8 @@ export function LandingHero() {
               style={{
                 margin: 0,
                 color: "var(--m-hero-ink)",
-                fontSize: "clamp(48px, 7vw, 104px)",
+                // Lower min on mobile so it doesn't overflow narrow screens.
+                fontSize: "clamp(40px, 9vw, 104px)",
                 lineHeight: 0.96,
                 letterSpacing: "-0.03em",
               }}
@@ -81,10 +76,10 @@ export function LandingHero() {
             </h1>
 
             <p
+              className="text-[17px] md:text-[21px]"
               style={{
                 margin: 0,
                 color: "color-mix(in oklch, var(--m-hero-ink) 78%, transparent)",
-                fontSize: 21,
                 lineHeight: 1.45,
                 maxWidth: 540,
               }}
