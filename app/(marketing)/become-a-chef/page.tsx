@@ -87,10 +87,10 @@ export default function BecomeAChefPage() {
        { n: "04", t: "Start earning", d: "Orders roll in. Payouts in 24 hours after each completed order." },
       ].map((s) => (
        <li key={s.n} className="bg-white border border-border rounded-2xl p-5">
-        <div className="text-[11px] font-bold text-accent-deep bg-accent-soft inline-flex px-1.5 py-0.5 rounded">
-         {s.n}
+        <div className="font-bold">
+         <span className="text-muted font-medium">{s.n}.&nbsp;</span>
+         {s.t}
         </div>
-        <div className="mt-3 font-bold">{s.t}</div>
         <div className="mt-1 text-xs text-muted leading-relaxed">{s.d}</div>
        </li>
       ))}

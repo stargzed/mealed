@@ -109,7 +109,7 @@ function HowItWorksPreview() {
           {steps.map((s) => (
             <article
               key={s.n}
-              className="grid gap-3.5"
+              className="grid gap-3.5 content-start"
               style={{
                 background: "var(--m-bg-elev)",
                 padding: "24px 22px",
@@ -118,21 +118,23 @@ function HowItWorksPreview() {
                 minHeight: 220,
               }}
             >
-              <div className="flex items-center justify-between">
-                <span style={{ fontVariantNumeric: "tabular-nums", fontSize: 12, color: "var(--m-muted)" }}>
-                  {s.n}
+              {/* Icon tile — the number lives subtly inside the title row */}
+              <span
+                className="grid place-items-center w-11 h-11"
+                style={{
+                  borderRadius: "var(--m-radius-sm)",
+                  background: "color-mix(in oklch, var(--m-accent) 12%, transparent)",
+                  color: "var(--m-accent)",
+                }}
+              >
+                <s.Icon size={20} />
+              </span>
+              <h3 className="m-display text-[18px] leading-snug">
+                <span style={{ color: "var(--m-muted)", fontWeight: 500 }}>
+                  {s.n}.&nbsp;
                 </span>
-                <span
-                  className="grid place-items-center w-8 h-8 rounded-full"
-                  style={{
-                    background: "color-mix(in oklch, var(--m-accent) 12%, transparent)",
-                    color: "var(--m-accent)",
-                  }}
-                >
-                  <s.Icon size={16} />
-                </span>
-              </div>
-              <h3 className="m-display text-[18px] leading-snug">{s.t}</h3>
+                {s.t}
+              </h3>
               <p className="text-[14px] leading-relaxed" style={{ color: "var(--m-sub)" }}>
                 {s.d}
               </p>
